@@ -18,7 +18,7 @@ body{
   width: 90vw;
   box-sizing: border-box;
   padding:1em;
-  margin-left: -100em;
+  /* margin-left: -100em; */
 /*   text-align: center; */
   transition: all linear .2s;
 }
