@@ -34,12 +34,12 @@ fetch('https://swapi.dev/api/people/')
     li.setAttribute('data-url', user.url);
     li.setAttribute('class', 'list-item');
     ul.appendChild(li);  
-    console.log(li.getAttribute('data-url'));
+    // console.log(li.getAttribute('data-url'));
 
     // set click event
     li.addEventListener("click",(e)=>{
-	// alert(e.target.dataset.url)
-	fetch(e.target.dataset.url)
+	// alert(e.target.dataset.url.split("").splice(28).join(""));
+	fetch('https://swapi.dev/api/people/'+ e.target.dataset.url.split("").splice(28).join(""))
 	.then(response=>response.json())
 	.then(cast=>{
 		// create instance of Users
