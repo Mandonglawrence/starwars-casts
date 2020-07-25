@@ -34,7 +34,7 @@ fetch('https://swapi.dev/api/people/')
     li.setAttribute('data-url', user.url);
     li.setAttribute('class', 'list-item');
     ul.appendChild(li);  
-    // console.log(li.getAttribute('data-url'));
+    console.log(li.getAttribute('data-url'));
 
     // set click event
     li.addEventListener("click",(e)=>{
@@ -56,9 +56,14 @@ fetch('https://swapi.dev/api/people/')
 
 		gender.textContent = `Gender: ${star.getGender()}`;
 
-		height.textContent = `Height: ${star.getHeight()}`;
+		height.textContent = `Height: ${star.getHeight()} meters`;
+		// cardWrapper.style.marginLeft = 'unset';
+		if(cardWrapper.style.marginLeft == '-100em'){
+			// cardWrapper.style.marginLeft = 15+'vw';
+			alert("hi")
+		}
 		cardWrapper.style.marginLeft = 'unset';
-		// cardWrapper.style.marginLeft = -100+'vw';
+		// cardWrapper.style.marginLeft = 15+'vw';
 		// cardWrapper.setAttribute('width','100%');
 
 	})

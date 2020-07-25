@@ -3,12 +3,21 @@ body{
 /*   background-color: #000; */
   background: no-repeat center/100% url("../img/bg-img.jpg");
 }
+.container{
+/*   display: flex; */
+/*   flex-direction: column */
+  width: 70vw;
+  margin: auto;
+}
+
 #list {
-  cursor: pointer;
+  
 }
 
 .list-item{
   color: #fff;
+  margin-top: 1em;
+  cursor: pointer;
 }
 
 #card-wrapper{
@@ -18,7 +27,7 @@ body{
   width: 90vw;
   box-sizing: border-box;
   padding:1em;
-  /* margin-left: -100em; */
+  margin-left: -100em;
 /*   text-align: center; */
   transition: all linear .2s;
 }
@@ -28,6 +37,7 @@ body{
   display: grid;
   grid-template-columns:1fr 2fr;
   border-radius: 15px;
+  width: 60%
 }
 
 #imgsrc{
@@ -49,9 +59,10 @@ body{
   justify-content: start!important;
   justify-items: center;
   height: 90%;
-  padding-top: 2em;
+  padding-top: .5em;
 }
 
 #details li{
   list-style: none;
+  margin-top:1em;
 }
