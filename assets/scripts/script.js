@@ -2,7 +2,7 @@
 window.onload = ()=>{
 
 const img = document.querySelector('#imgsrc');
-const name = document.querySelector('#name');
+const age = document.querySelector('#age');
 const gender = document.querySelector('#gender');
 const height = document.querySelector('#height');
 const cardWrapper = document.querySelector('#card-wrapper');
@@ -11,11 +11,11 @@ const cardWrapper = document.querySelector('#card-wrapper');
 
 class Users{
 	constructor(user){
-		this.name = user.name;
+		this.age = user.birth_year;
 		this.gender = user.gender;
 		this.height = user.height;
 	}
-	getName(){return this.name}
+	getAge(){return this.age}
 
 	getGender(){return this.gender}
 
@@ -28,16 +28,40 @@ fetch('https://swapi.dev/api/people/')
 .then(({results})=>{
   let users = results;
   for(user of users){
+	let listItemContainer = document.createElement('div');
+	let listImg = document.createElement('img');
+	listImg.setAttribute('data-url', user.url);
+	let listName = document.createElement('h3');
+	listName.setAttribute('data-url', user.url);
+	listName.appendChild(document.createTextNode(user.name));
+
+
+	if(user.gender === 'female'){
+		listImg.setAttribute('src','assets/img/girl.svg');
+	}
+	else{
+		listImg.setAttribute('src','assets/img/man.svg');
+	}
+
+
+
+	// listImg.setAttribute('src','assets/img/man.svg');
+	listImg.setAttribute('id','listImgId');
+	listItemContainer.appendChild(listImg);
+	listItemContainer.appendChild(listName);
+	listItemContainer.setAttribute('id','listItemContainer');
     let ul = document.getElementById("list");
-    let li = document.createElement("li");
-    li.appendChild(document.createTextNode(user.name));
-    li.setAttribute('data-url', user.url);
-    li.setAttribute('class', 'list-item');
-    ul.appendChild(li);  
-    console.log(li.getAttribute('data-url'));
+	let div = document.createElement("div");
+	div.setAttribute('data-url', user.url);
+    div.appendChild(listItemContainer);
+	listItemContainer.setAttribute('data-url', user.url);
+	// li.setAttribute('data-url', user.url);
+    div.setAttribute('class', 'list-item');
+    ul.appendChild(div);  
+    console.log(div.getAttribute('data-url'));
 
     // set click event
-    li.addEventListener("click",(e)=>{
+    div.addEventListener("click",(e)=>{
 	// alert(e.target.dataset.url.split("").splice(28).join(""));
 	fetch('https://swapi.dev/api/people/'+ e.target.dataset.url.split("").splice(28).join(""))
 	.then(response=>response.json())
@@ -52,18 +76,17 @@ fetch('https://swapi.dev/api/people/')
 			img.setAttribute('src','assets/img/man.svg');
 		}
 		// img.setAttribute('src','assets/img/man.svg');
-		name.textContent = `Name: ${star.getName()}`;
+		// name.textContent = `Name: ${star.getName()}`;
 
 		gender.textContent = `Gender: ${star.getGender()}`;
 
 		height.textContent = `Height: ${star.getHeight()} meters`;
+
+		age.textContent = `Age: ${star.getAge()}`;
 		// cardWrapper.style.marginLeft = 'unset';
-		if(cardWrapper.style.marginLeft == '-100em'){
-			// cardWrapper.style.marginLeft = 15+'vw';
-			alert("hi")
-		}
-		cardWrapper.style.marginLeft = 'unset';
-		// cardWrapper.style.marginLeft = 15+'vw';
+		// cardWrapper.style.marginLeft = 'unset';
+		// cardWrapper.style.marginBottom = 40+'vh';
+		listItemContainer.appendChild(document.querySelector('#details'));
 		// cardWrapper.setAttribute('width','100%');
 
 	})
