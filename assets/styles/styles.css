@@ -13,7 +13,7 @@ body{
 }
 .header{
   
-  margin: auto;
+  margin-top: 2em;
   color:#f8e806;
   font-weight:bold;
   text-transform:uppercase;
@@ -138,5 +138,8 @@ body{
     }
     #listItemContainer{
       border-radius: 15px;
+    }
+    .header{
+      margin-top: 3em;
     }
   }
