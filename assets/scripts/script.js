@@ -11,15 +11,23 @@ const cardWrapper = document.querySelector('#card-wrapper');
 
 class Users{
 	constructor(user){
-		this.age = user.birth_year;
+		this.name = user.name;
+		this.birth_year = user.birth_year;
 		this.gender = user.gender;
 		this.height = user.height;
+		this.url = user.url;
 	}
-	getAge(){return this.age}
 
-	getGender(){return this.gender}
-
-	getHeight(){return this.height}
+	user(name,birth_year,gender,height){
+	return	{
+	     "name" :this.name,
+		"birth_year" : this.birth_year,
+		"gender" : this.gender,
+		"height" : this.height,
+		"url":this.url
+	    }
+	}
+	
 }
 
 // make api call to get all stars
@@ -28,23 +36,23 @@ fetch('https://swapi.dev/api/people/')
 .then(({results})=>{
   let users = results;
   for(user of users){
+	  let actr = new Users(user);
+	  let actrDetails = actr.user();
 	let listItemContainer = document.createElement('div');
 	let listImg = document.createElement('img');
-	listImg.setAttribute('data-url', user.url);
+	listImg.setAttribute('data-url', actrDetails.url);
 	let listName = document.createElement('h3');
-	listName.setAttribute('data-url', user.url);
-	listName.appendChild(document.createTextNode(user.name));
+	listName.setAttribute('data-url', actrDetails.url);
+	listName.appendChild(document.createTextNode(actrDetails.name));
 
 
-	if(user.gender === 'female'){
+	if(actrDetails.gender === 'female'){
 		listImg.setAttribute('src','assets/img/girl.svg');
 	}
 	else{
 		listImg.setAttribute('src','assets/img/man.svg');
 	}
-
-
-
+	
 	// listImg.setAttribute('src','assets/img/man.svg');
 	listImg.setAttribute('id','listImgId');
 	listItemContainer.appendChild(listImg);
@@ -52,9 +60,10 @@ fetch('https://swapi.dev/api/people/')
 	listItemContainer.setAttribute('id','listItemContainer');
     let ul = document.getElementById("list");
 	let div = document.createElement("div");
-	div.setAttribute('data-url', user.url);
+	div.setAttribute('data-url', actrDetails.url);
+	div.setAttribute('id','main-card');
     div.appendChild(listItemContainer);
-	listItemContainer.setAttribute('data-url', user.url);
+	listItemContainer.setAttribute('data-url', actrDetails.url);
 	// li.setAttribute('data-url', user.url);
     div.setAttribute('class', 'list-item');
     ul.appendChild(div);  
@@ -62,34 +71,15 @@ fetch('https://swapi.dev/api/people/')
 
     // set click event
     div.addEventListener("click",(e)=>{
-	// alert(e.target.dataset.url.split("").splice(28).join(""));
-	fetch('https://swapi.dev/api/people/'+ e.target.dataset.url.split("").splice(28).join(""))
-	.then(response=>response.json())
-	.then(cast=>{
-		// create instance of Users
-		let star = new Users(cast);
-		// alert(star.getHeight())
-		if(star.getGender() === 'female'){
-			img.setAttribute('src','assets/img/girl.svg');
-		}
-		else{
-			img.setAttribute('src','assets/img/man.svg');
-		}
-		// img.setAttribute('src','assets/img/man.svg');
-		// name.textContent = `Name: ${star.getName()}`;
+	
 
-		gender.textContent = `Gender: ${star.getGender()}`;
+		gender.textContent = `Gender: ${actrDetails.gender}`;
 
-		height.textContent = `Height: ${star.getHeight()} meters`;
+		height.textContent = `Height: ${actrDetails.height} meters`;
 
-		age.textContent = `Age: ${star.getAge()}`;
-		// cardWrapper.style.marginLeft = 'unset';
-		// cardWrapper.style.marginLeft = 'unset';
-		// cardWrapper.style.marginBottom = 40+'vh';
+		age.textContent = `Birth year: ${actrDetails.birth_year}`;
+	
 		listItemContainer.appendChild(document.querySelector('#details'));
-		// cardWrapper.setAttribute('width','100%');
-
-	})
 
 })
   }
