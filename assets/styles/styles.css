@@ -119,3 +119,17 @@ body{
   list-style: none;
   margin-top:1em;
 }
+
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+     #list{
+       /* background-color: red; */
+       display: block;
+       font-size: large;
+       padding:1em .5em ;
+     }
+  }
