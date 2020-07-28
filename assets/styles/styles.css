@@ -129,7 +129,14 @@ body{
      #list{
        /* background-color: red; */
        display: block;
-       font-size: large;
+       font-size:2rem;
        padding:1em .5em ;
      }
+     #listImgId{
+      width: 60%;
+      /* height: 100%; */
+    }
+    #listItemContainer{
+      border-radius: 15px;
+    }
   }
