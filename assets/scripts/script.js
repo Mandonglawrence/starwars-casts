@@ -36,50 +36,51 @@ fetch('https://swapi.dev/api/people/')
 .then(({results})=>{
   let users = results;
   for(user of users){
-	  let actr = new Users(user);
-	  let actrDetails = actr.user();
+	  let star = new Users(user);
+	  let starDetails = star.user();
 	let listItemContainer = document.createElement('div');
 	let listImg = document.createElement('img');
-	listImg.setAttribute('data-url', actrDetails.url);
+	
 	let listName = document.createElement('h3');
-	listName.setAttribute('data-url', actrDetails.url);
-	listName.appendChild(document.createTextNode(actrDetails.name));
+	
+	listName.appendChild(document.createTextNode(starDetails.name));
 
 
-	if(actrDetails.gender === 'female'){
+	if(starDetails.gender === 'female'){
 		listImg.setAttribute('src','assets/img/girl.svg');
 	}
 	else{
 		listImg.setAttribute('src','assets/img/man.svg');
 	}
-	
-	// listImg.setAttribute('src','assets/img/man.svg');
+
 	listImg.setAttribute('id','listImgId');
 	listItemContainer.appendChild(listImg);
 	listItemContainer.appendChild(listName);
 	listItemContainer.setAttribute('id','listItemContainer');
     let ul = document.getElementById("list");
 	let div = document.createElement("div");
-	div.setAttribute('data-url', actrDetails.url);
+	
 	div.setAttribute('id','main-card');
     div.appendChild(listItemContainer);
-	listItemContainer.setAttribute('data-url', actrDetails.url);
-	// li.setAttribute('data-url', user.url);
+	
     div.setAttribute('class', 'list-item');
     ul.appendChild(div);  
-    console.log(div.getAttribute('data-url'));
-
+	
     // set click event
     div.addEventListener("click",(e)=>{
 	
 
-		gender.textContent = `Gender: ${actrDetails.gender}`;
+		gender.textContent = `Gender: ${starDetails.gender}`;
 
-		height.textContent = `Height: ${actrDetails.height} meters`;
+		height.textContent = `Height: ${starDetails.height} meters`;
 
-		age.textContent = `Birth year: ${actrDetails.birth_year}`;
-	
-		listItemContainer.appendChild(document.querySelector('#details'));
+		age.textContent = `Birth year: ${starDetails.birth_year}`;
+		
+		// if(listItemContainer.contains(document.querySelector('#details')) === false)
+		// {
+			listItemContainer.appendChild(document.querySelector('#details'));
+		// }
+		// listItemContainer.removeChild(document.querySelector('#details'));
 
 })
   }
