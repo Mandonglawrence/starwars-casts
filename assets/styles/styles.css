@@ -12,7 +12,7 @@ body{
   margin: auto;
 }
 .header{
-  /* color: #fff; */
+  
   margin: auto;
   color:#f8e806;
   font-weight:bold;
@@ -29,7 +29,7 @@ body{
   border-radius: 15px;
 }
 #main-card{
-  transition: all linear 2s;
+  transition: all linear .5s;
 }
 #list{
   display: grid;
@@ -42,7 +42,7 @@ body{
 /* } controversial */
 #listImgId{
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 #listItemContainer{
 /*   background: green; */
