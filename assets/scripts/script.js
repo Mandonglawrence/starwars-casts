@@ -1,6 +1,7 @@
-
+// import People from "./usersModule";
+// console.log(People);
 window.onload = ()=>{
-
+	
 const img = document.querySelector('#imgsrc');
 const age = document.querySelector('#age');
 const gender = document.querySelector('#gender');
@@ -37,6 +38,7 @@ fetch('https://swapi.dev/api/people/')
   let users = results;
   for(user of users){
 	  let star = new Users(user);
+
 	  let starDetails = star.user();
 	let listItemContainer = document.createElement('div');
 	let listImg = document.createElement('img');
@@ -57,6 +59,7 @@ fetch('https://swapi.dev/api/people/')
 	listItemContainer.appendChild(listImg);
 	listItemContainer.appendChild(listName);
 	listItemContainer.setAttribute('id','listItemContainer');
+	// listItemContainer.appendChild(document.querySelector('#details'));
     let ul = document.getElementById("list");
 	let div = document.createElement("div");
 	
@@ -76,15 +79,26 @@ fetch('https://swapi.dev/api/people/')
 
 		age.textContent = `Birth year: ${starDetails.birth_year}`;
 		
-		// if(listItemContainer.contains(document.querySelector('#details')) === false)
-		// {
+		
 			listItemContainer.appendChild(document.querySelector('#details'));
-		// }
-		// listItemContainer.removeChild(document.querySelector('#details'));
 
 })
   }
 });
 }
-
-
+	// let cardExDetails = document.querySelector('#details');
+	// cardExDetails.addEventListener("click",function(){
+	// if(cardExDetails.style.display = 'block'){
+	// 	// document.querySelector('#details').style.display = 'hide';
+	// 	if((listItemContainer.children)[2] !== undefined){
+	// 		listItemContainer.remove(cardExDetails)
+	// 	}
+	// 	// console.log(listItemContainer.children)
+	// }else{
+	// 	listItemContainer.appendChild(cardExDetails)
+	// 	cardExDetails.style.display = 'block'
+	// 	console.log(2)
+	// }
+	
+	// console.log(1)
+// })
